@@ -37,17 +37,18 @@ class Master {
 	double pi = 4.0 * total / totalCount / numWorkers;
 
 	long stopTime = System.nanoTime();
-
+    int time = (int) (stopTime - startTime);
 	System.out.println("\nPi : " + pi );
 	System.out.println("Error: " + (Math.abs((pi - Math.PI)) / Math.abs((Math.PI)) +"\n"));
 
 	System.out.println("Ntot: " + totalCount*numWorkers);
 	System.out.println("Available processors: " + numWorkers);
-	System.out.println("Time Duration (nanoseconds): " + (stopTime - startTime) + "\n");
+	System.out.println("Time Duration (nanoseconds): " + time + "\n");
 
 	System.out.println( (Math.abs((pi - Math.PI)) / Math.PI) +" "+ totalCount*numWorkers +" "+ numWorkers +" "+ (stopTime - startTime));
 
 	exec.shutdown();
-	return total;
+    //pour faciliter la recuperation du temps de calcul
+	return (time);
     }
 }
