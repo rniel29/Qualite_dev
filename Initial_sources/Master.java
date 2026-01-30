@@ -13,7 +13,7 @@ class Master {
     public long doRun(int totalCount, int numWorkers) throws InterruptedException, ExecutionException 
     {
 
-	long startTime = System.currentTimeMillis();
+	long startTime = System.nanoTime();
 
 	// Create a collection of tasks
 	List<Callable<Long>> tasks = new ArrayList<Callable<Long>>();
@@ -36,14 +36,14 @@ class Master {
 	    }
 	double pi = 4.0 * total / totalCount / numWorkers;
 
-	long stopTime = System.currentTimeMillis();
+	long stopTime = System.nanoTime();
 
 	System.out.println("\nPi : " + pi );
-	System.out.println("Error: " + (Math.abs((pi - Math.PI)) / Math.PI) +"\n");
+	System.out.println("Error: " + (Math.abs((pi - Math.PI)) / Math.abs((Math.PI)) +"\n"));
 
 	System.out.println("Ntot: " + totalCount*numWorkers);
 	System.out.println("Available processors: " + numWorkers);
-	System.out.println("Time Duration (ms): " + (stopTime - startTime) + "\n");
+	System.out.println("Time Duration (nanoseconds): " + (stopTime - startTime) + "\n");
 
 	System.out.println( (Math.abs((pi - Math.PI)) / Math.PI) +" "+ totalCount*numWorkers +" "+ numWorkers +" "+ (stopTime - startTime));
 

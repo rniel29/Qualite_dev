@@ -8,7 +8,7 @@ public class Pi
     {
 	long total=0;
 	// 10 workers, 50000 iterations each
-	total = new Master().doRun(50000, 10);
+	total = new Master().doRun(10000, 100);
 	System.out.println("total from Master = " + total);
     }
 }
