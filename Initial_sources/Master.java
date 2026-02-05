@@ -10,7 +10,24 @@ import java.util.List;
  * and aggregates the results.
  */
 class Master {
-    public long doRun(int totalCount, int numWorkers) throws InterruptedException, ExecutionException 
+    
+    public static class Result {
+        public int ntot;
+        public int numWorkers;
+        public long timeNanos;
+        public double pi;
+        public double error;
+        
+        public Result(int ntot, int numWorkers, long timeNanos, double pi, double error) {
+            this.ntot = ntot;
+            this.numWorkers = numWorkers;
+            this.timeNanos = timeNanos;
+            this.pi = pi;
+            this.error = error;
+        }
+    }
+    
+    public Result doRun(int totalCount, int numWorkers) throws InterruptedException, ExecutionException 
     {
 
 	long startTime = System.nanoTime();
@@ -37,18 +54,21 @@ class Master {
 	double pi = 4.0 * total / totalCount / numWorkers;
 
 	long stopTime = System.nanoTime();
-    int time = (int) (stopTime - startTime);
+    long time = (stopTime - startTime);
+    double error = Math.abs((pi - Math.PI)) / Math.PI;
+    int ntot = totalCount * numWorkers;
+    
 	System.out.println("\nPi : " + pi );
-	System.out.println("Error: " + (Math.abs((pi - Math.PI)) / Math.abs((Math.PI)) +"\n"));
+	System.out.println("Error: " + error + "\n");
 
-	System.out.println("Ntot: " + totalCount*numWorkers);
+	System.out.println("Ntot: " + ntot);
 	System.out.println("Available processors: " + numWorkers);
 	System.out.println("Time Duration (nanoseconds): " + time + "\n");
 
-	System.out.println( (Math.abs((pi - Math.PI)) / Math.PI) +" "+ totalCount*numWorkers +" "+ numWorkers +" "+ (stopTime - startTime));
+	System.out.println(error + " " + ntot + " " + numWorkers + " " + time);
 
 	exec.shutdown();
-    //pour faciliter la recuperation du temps de calcul
-	return (time);
+    
+	return new Result(ntot, numWorkers, time, pi, error);
     }
 }
