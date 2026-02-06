@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class main_scalabilte_PI {
+public class main_scalabilte_PIfaible {
     public static void main(String[] args) throws Exception 
     {
 	// Créer le dossier resultat s'il n'existe pas
@@ -25,14 +25,14 @@ public class main_scalabilte_PI {
 	    }
 	    
 	    // NTOT constant pour scalabilité forte
-	    int NTOT = 12000000;
+	    int totalcount = 120000000;
 	    int numWorkers = 12; // À changer manuellement pour chaque test
 	
 	    // Lancer l'expérience
 		//forte
 	    //Master.Result result = new Master().doRun(NTOT/numWorkers, numWorkers);
 	    //faible
-		Master.Result result = new Master().doRun(NTOT, numWorkers);
+		Master.Result result = new Master().doRun(totalcount, numWorkers);
 	    // Écrire les résultats dans le CSV
 	    writer.println(result.ntot + "," + 
 	                   result.numWorkers + "," + 
