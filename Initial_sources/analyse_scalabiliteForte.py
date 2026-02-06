@@ -73,4 +73,4 @@ plt.show()
 grouped['Efficacite'] = (grouped['Speedup'] / grouped['NumWorkers']) * 100
 
 print("\nAnalyse de l'efficacité:")
-print(grouped[['NumWorkers', 'Speedup', 'Efficacite']])
+print(grouped[['NumWorkers', 'Speedup', 'Efficacite','Temps(ns)']])
