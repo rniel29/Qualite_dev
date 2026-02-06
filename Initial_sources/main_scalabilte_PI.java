@@ -25,14 +25,14 @@ public class main_scalabilte_PI {
 	    }
 	    
 	    // NTOT constant pour scalabilité forte
-	    int NTOT = 1200000000;
+	    int NTOT = 12000000;
 	    int numWorkers = 12; // À changer manuellement pour chaque test
 	
 	    // Lancer l'expérience
 		//forte
 	    //Master.Result result = new Master().doRun(NTOT/numWorkers, numWorkers);
 	    //faible
-		Master.Result result = new Master().doRun(NTOT/numWorkers, numWorkers);
+		Master.Result result = new Master().doRun(NTOT, numWorkers);
 	    // Écrire les résultats dans le CSV
 	    writer.println(result.ntot + "," + 
 	                   result.numWorkers + "," + 
