@@ -45,7 +45,6 @@ for ntot, group in grouped.groupby('Ntot'):
 
     g = group.copy()
     g['Speedup'] = T1 / g['Temps(ns)']
-    g['Efficacite'] = (g['Speedup'] / g['NumWorkers']) * 100
     results.append(g)
 
     print(f"\nSpeedup calculé pour Ntot={ntot}:")
@@ -79,8 +78,7 @@ print(f"Graphique sauvegardé dans {output_path}")
 # Afficher le graphique
 plt.show()
 
-# Analyse de l'efficacité
 result_df = pd.concat(results).sort_values(['Ntot', 'NumWorkers'])
 
-print("\nAnalyse de l'efficacité:")
-print(result_df[['Ntot', 'NumWorkers', 'Speedup', 'Efficacite', 'Temps(ns)']])
+print("\nRésumé speedup:")
+print(result_df[['Ntot', 'NumWorkers', 'Speedup', 'Temps(ns)']])
