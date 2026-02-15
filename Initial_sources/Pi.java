@@ -4,12 +4,12 @@
  */
 public class Pi 
 {
-    public static void main(String[] args) throws Exception 
-    {
-	long total=0;
+	public static void main(String[] args) throws Exception 
+	{
+	Master.Result total;
 	// 10 workers, 50000 iterations each
 	total = new Master().doRun(10000, 100);
 	System.out.println("total from Master = " + total);
-    }
+	}
 }
 
